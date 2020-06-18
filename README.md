@@ -33,7 +33,7 @@
 - Modern tests against APP V1: `gradlew clean modernTests -PAPP_VERSION=V1`
 - Modern tests against APP V2: `gradlew clean modernTests -PAPP_VERSION=V2`
 
-- Specific hackathon task use the commands above appending `-Ptask=task_number` where task number canm be either 1, 2 or 3
+- Specific hackathon task use the commands above appending `-Ptask=task_number` where task number can be either 1, 2 or 3
 
 ### Eyes Batch Results URLs
 
