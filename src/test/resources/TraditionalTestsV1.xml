@@ -1,0 +1,108 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" name="TraditionalTestsV1" parallel="classes">
+    <test name="Chrome Laptop">
+        <parameter name="device" value="Laptop"/>
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="viewport" value="1200 x 700"/>
+        <groups>
+            <run>
+                <include name="Laptop"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TraditionalTestsV1.Task1"/>
+            <class name="TraditionalTestsV1.Task2"/>
+            <class name="TraditionalTestsV1.Task3"/>
+        </classes>
+    </test>
+    <test name="Firefox Laptop">
+        <parameter name="device" value="Laptop"/>
+        <parameter name="browser" value="Firefox"/>
+        <parameter name="viewport" value="1200 x 700"/>
+        <groups>
+            <run>
+                <include name="Laptop"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TraditionalTestsV1.Task1"/>
+            <class name="TraditionalTestsV1.Task2"/>
+            <class name="TraditionalTestsV1.Task3"/>
+        </classes>
+    </test>
+    <test name="Edge Laptop">
+        <parameter name="device" value="Laptop"/>
+        <parameter name="browser" value="Edge"/>
+        <parameter name="viewport" value="1200 x 700"/>
+        <groups>
+            <run>
+                <include name="Laptop"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TraditionalTestsV1.Task1"/>
+            <class name="TraditionalTestsV1.Task2"/>
+            <class name="TraditionalTestsV1.Task3"/>
+        </classes>
+    </test>
+    <test name="Chrome Tablet">
+        <parameter name="device" value="Tablet"/>
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="viewport" value="768 x 700"/>
+        <groups>
+            <run>
+                <include name="Tablet"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TraditionalTestsV1.Task1"/>
+            <class name="TraditionalTestsV1.Task2"/>
+            <class name="TraditionalTestsV1.Task3"/>
+        </classes>
+    </test>
+    <test name="Firefox Tablet">
+        <parameter name="device" value="Tablet"/>
+        <parameter name="browser" value="Firefox"/>
+        <parameter name="viewport" value="768 x 700"/>
+        <groups>
+            <run>
+                <include name="Tablet"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TraditionalTestsV1.Task1"/>
+            <class name="TraditionalTestsV1.Task2"/>
+            <class name="TraditionalTestsV1.Task3"/>
+        </classes>
+    </test>
+    <test name="Edge Tablet">
+        <parameter name="device" value="Tablet"/>
+        <parameter name="browser" value="Edge"/>
+        <parameter name="viewport" value="768 x 700"/>
+        <groups>
+            <run>
+                <include name="Tablet"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TraditionalTestsV1.Task1"/>
+            <class name="TraditionalTestsV1.Task2"/>
+            <class name="TraditionalTestsV1.Task3"/>
+        </classes>
+    </test>
+    <test name="Chrome iPhone X">
+        <parameter name="device" value="iPhone X"/>
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="viewport" value="500 x 700"/>
+        <groups>
+            <run>
+                <include name="iPhone X"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TraditionalTestsV1.Task1"/>
+            <class name="TraditionalTestsV1.Task2"/>
+            <class name="TraditionalTestsV1.Task3"/>
+        </classes>
+    </test>
+</suite>
