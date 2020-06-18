@@ -47,6 +47,6 @@
 
 ### Implementation notes
 
-- For traditional tests browsers and viewports combinations and concurrency level are controlled in TestNG suites files TraditionalTestsV1 and TraditionalTestsV2.
-- For modern tests concurrency lever for VisualGridRunner and batch name are controlled in TestNG suites files ModernTestsV1 and ModernTestsV2.
+- For traditional tests browsers and viewports combinations and concurrency level are controlled in TestNG suites files [TraditionalTestsV1](TraditionalTestsV1.xml) and [TraditionalTestsV2](TraditionalTestsV2.xml).
+- For modern tests concurrency lever for VisualGridRunner and batch name are controlled in TestNG suites files [ModernTestsV1](ModernTestsV1.xml) and [ModernTestsV2](ModernTestsV2.xml).
 - Eyes Batch Results URLs above are for the latest run. In total there were 3 runs (baseline against V1, then run against V2 which was resolved with 'bug regions' and the third one against v2 again to try 'Automatically Marking Future Tests as Failed' functionality)
