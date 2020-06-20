@@ -14,7 +14,7 @@ public class Task2 extends BaseModernTest {
 
     @Test(testName = "Filter Results")
     public void testFilterResults() {
-        eyes.open(driver, APPLICATION_NAME, "Task 2", new RectangleSize(800, 600));
+        eyes.open(driver, APPLICATION_NAME, "Task 2", new RectangleSize(VIEWPORT_WIDTH, VIEWPORT_HEIGHT));
         GalleryPage galleryPage = new GalleryPage(driver);
         galleryPage.open();
         galleryPage.filter("colors", "Black");

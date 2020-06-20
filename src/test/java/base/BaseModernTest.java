@@ -23,8 +23,8 @@ import utilities.DriverFactory;
 public class BaseModernTest {
 
     protected static final String APPLICATION_NAME = "AppliFashion";
-    private static final int VIEWPORT_WIDTH = 800;
-    private static final int VIEWPORT_HEIGHT = 600;
+    protected static final int VIEWPORT_WIDTH = 800;
+    protected static final int VIEWPORT_HEIGHT = 600;
     private static VisualGridRunner runner;
     private static Configuration eyesConfig;
     protected WebDriver driver;

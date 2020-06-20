@@ -14,7 +14,7 @@ public class Task3 extends BaseModernTest {
 
     @Test(testName = "Product Details test")
     public void testCrossDeviceElements() {
-        eyes.open(driver, APPLICATION_NAME, "Task 3", new RectangleSize(800, 600));
+        eyes.open(driver, APPLICATION_NAME, "Task 3", new RectangleSize(VIEWPORT_WIDTH, VIEWPORT_HEIGHT));
         GalleryPage galleryPage = new GalleryPage(driver);
         galleryPage.open();
         galleryPage.filter("colors", "Black");
