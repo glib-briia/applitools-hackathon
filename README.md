@@ -35,11 +35,9 @@
 
 - Specific hackathon task use the commands above appending `-Ptask=task_number` where task number can be either 1, 2 or 3
 
-### Eyes Batch Results URLs
+### Eyes Batch Results URL
 
- - [Task 1](https://eyes.applitools.com/app/test-results/00000251809825918588)
- - [Task 2](https://eyes.applitools.com/app/test-results/00000251809825885862)
- - [Task 3](https://eyes.applitools.com/app/test-results/00000251809825854185)
+ - [Test results](https://eyes.applitools.com/app/test-results/00000251809621932489)
  
 ### Traditional tests results
 - [Traditional-V1-TestResults.txt](Traditional-V1-TestResults.txt)
@@ -49,4 +47,12 @@
 
 - For traditional tests browsers and viewports combinations and concurrency level are controlled in TestNG suites files [TraditionalTestsV1](src/test/resources/TraditionalTestsV1.xml) and [TraditionalTestsV2](src/test/resources/TraditionalTestsV2.xml).
 - For modern tests concurrency lever for VisualGridRunner and batch name are controlled in TestNG suites files [ModernTestsV1](src/test/resources/ModernTestsV1.xml) and [ModernTestsV2](src/test/resources/ModernTestsV2.xml).
-- Eyes Batch Results URLs above are for the latest run. In total there were 3 runs (baseline against V1, then run against V2 which was resolved with 'bug regions' and the third one against V2 again to try 'Automatically Marking Future Tests as Failed' functionality)
+- In Traditional approach in order to determine weather the check is applicable for device test groups were used e.g. ``groups = {Laptop, Tablet, iPhone_X}`` 
+- By default Selenium doesnt allow to set viewport size, it only allows to set window size which significantly larger that the actual viewport. In order to calculate window size based on required viewport the following formula was used 
+   
+   ```window width = window.outerWidth - window.innerWidth  + desired viewport width```
+   
+   ```window height = window.outerHeight - window.innerHeight + desired viewport height```
+   
+   in [DriverFactory.setViewportSize](/src/main/java/utilities/DriverFactory.java)
+- Eyes Batch Results URL above is for the latest run. In total there were 3 runs (baseline against V1, then run against V2 which was resolved with 'bug regions' and the third one against V2 again to try 'Automatically Marking Future Tests as Failed' functionality)

@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="1" name="ModernTestsV1" parallel="tests">
+    <parameter name="concurrency" value="10"/>
+    <parameter name="batch-name" value="UFG Hackathon"/>
     <test name="Hackathon Tasks">
-        <parameter name="concurrency" value="10"/>
-        <parameter name="batch-name" value="UFG Hackathon"/>
         <classes>
             <class name="ModernTestsV1.Task1"/>
             <class name="ModernTestsV1.Task2"/>

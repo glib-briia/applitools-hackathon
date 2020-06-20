@@ -13,8 +13,8 @@ public class Task2 extends BaseModernTest {
 
     @Test(testName = "Filter Results")
     public void testFilterResults() {
-        GalleryPage galleryPage = new GalleryPage(driver);
         eyes.open(driver, APPLICATION_NAME, "Task 2", new RectangleSize(800, 600));
+        GalleryPage galleryPage = new GalleryPage(driver);
         galleryPage.open();
         galleryPage.filter("colors", "Black");
         eyes.check(Target.region(galleryPage.product_grid).withName("Filter Results"));

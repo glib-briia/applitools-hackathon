@@ -1,6 +1,7 @@
 package base;
 
 import com.applitools.eyes.BatchInfo;
+import com.applitools.eyes.TestResultContainer;
 import com.applitools.eyes.TestResultsSummary;
 import com.applitools.eyes.selenium.BrowserType;
 import com.applitools.eyes.selenium.Configuration;
@@ -8,10 +9,9 @@ import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.visualgrid.model.DeviceName;
 import com.applitools.eyes.visualgrid.model.ScreenOrientation;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import utilities.DriverFactory;
 
 /*
@@ -23,52 +23,64 @@ import utilities.DriverFactory;
 public class BaseModernTest {
 
     protected static final String APPLICATION_NAME = "AppliFashion";
-
+    private static final int VIEWPORT_WIDTH = 800;
+    private static final int VIEWPORT_HEIGHT = 600;
+    private static VisualGridRunner runner;
+    private static Configuration eyesConfig;
     protected WebDriver driver;
     protected Eyes eyes;
-    private VisualGridRunner runner;
 
-    private static void initiateEyes(Eyes eyes, String batchName) {
-        // Initialize eyes Configuration
-        Configuration config = new Configuration();
-        config.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
+    /*
+     * Batch name and concurrency level supplied as parameters from
+     * ModernTestsV1.xml and ModernTestsV2.xml TestNG suites
+     * */
+    @BeforeSuite(alwaysRun = true)
+    @Parameters(value = {"concurrency", "batch-name"})
+    public void configureEyes(Integer concurrency, String batchName) {
+        // Create a runner with concurrency supplied as parameter from suite xml
+        runner = new VisualGridRunner(concurrency);
+        eyesConfig = new Configuration();
+        eyesConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
         // create a new batch info instance and set it to the configuration
-        config.setBatch(new BatchInfo(batchName));
+        eyesConfig.setBatch(new BatchInfo(batchName));
         // Desktop
-        config.addBrowser(1200, 700, BrowserType.CHROME);
-        config.addBrowser(1200, 700, BrowserType.FIREFOX);
-        config.addBrowser(1200, 700, BrowserType.EDGE_CHROMIUM);
+        eyesConfig.addBrowser(1200, 700, BrowserType.CHROME);
+        eyesConfig.addBrowser(1200, 700, BrowserType.FIREFOX);
+        eyesConfig.addBrowser(1200, 700, BrowserType.EDGE_CHROMIUM);
         //Tablet
-        config.addBrowser(768, 700, BrowserType.CHROME);
-        config.addBrowser(768, 700, BrowserType.FIREFOX);
-        config.addBrowser(768, 700, BrowserType.EDGE_CHROMIUM);
+        eyesConfig.addBrowser(768, 700, BrowserType.CHROME);
+        eyesConfig.addBrowser(768, 700, BrowserType.FIREFOX);
+        eyesConfig.addBrowser(768, 700, BrowserType.EDGE_CHROMIUM);
         //Mobile
-        config.addDeviceEmulation(DeviceName.iPhone_X, ScreenOrientation.PORTRAIT);
-        // Set the configuration object to eyes
-        eyes.setConfiguration(config);
+        eyesConfig.addDeviceEmulation(DeviceName.iPhone_X, ScreenOrientation.PORTRAIT);
     }
 
     /*
-    * Batch name and concurrency level supplied as parameters from
-    * ModernTestsV1.xml and ModernTestsV2.xml TestNG suites
-    * */
+     * Batch name and concurrency level supplied as parameters from
+     * ModernTestsV1.xml and ModernTestsV2.xml TestNG suites
+     * */
     @BeforeClass(alwaysRun = true)
-    @Parameters(value = {"concurrency", "batch-name"})
-    public void setUp(Integer concurrency, String batchName) {
-        this.driver = DriverFactory.getDriver("Chrome");
-        // Create a runner with concurrency supplied as parameter from suite xml
-        runner = new VisualGridRunner(concurrency);
+    public void initialiseEyes() {
+        WebDriverManager.chromedriver().setup();
+        driver = DriverFactory.getDriver("Chrome");
         eyes = new Eyes(runner);
-        initiateEyes(eyes, batchName);
+        eyes.setConfiguration(eyesConfig);
     }
 
-    @AfterClass()
-    public void tearDown() {
-        // Call Close on eyes to let the server know it should display the results
-        this.eyes.closeAsync();
-        this.driver.quit();
+
+    @AfterSuite(alwaysRun = true)
+    public void retrieveResults() {
         TestResultsSummary allTestResults = runner.getAllTestResults(false);
-        System.out.println(allTestResults);
+        for (TestResultContainer resultContainer : allTestResults.getAllResults()) {
+            System.out.println(resultContainer.getTestResults());
+        }
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void closeEyes() {
+        // Call Close on eyes to let the server know it should display the results
+        eyes.closeAsync();
+        driver.quit();
     }
 }
 

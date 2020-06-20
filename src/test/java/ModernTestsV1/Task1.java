@@ -12,8 +12,8 @@ public class Task1 extends BaseModernTest {
 
     @Test(testName = "Cross-Device Elements Test")
     public void testCrossDeviceElements() {
-        GalleryPage galleryPage = new GalleryPage(driver);
         eyes.open(driver, APPLICATION_NAME, "Task 1", new RectangleSize(800, 600));
+        GalleryPage galleryPage = new GalleryPage(driver);
         galleryPage.open();
         eyes.checkWindow("Cross-Device Elements Test");
     }
