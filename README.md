@@ -23,7 +23,7 @@
 
 ## Getting Started
 
-1. Clone the repository - `git clone https://github.com/glib-briia/applitools-hackathon.git`
+1. Clone the repository - `git clone https://github.com/glib-briia/applitools-ufg-hackathon.git`
 2. Open terminal and run `cd applitools-hackathon`
 
 ### Run tests:
